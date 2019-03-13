@@ -1,0 +1,13 @@
+c:\users\user\documents\visual studio 2015\Projects\ProjectB\ProjectB\bin\Debug\ProjectB.exe.config
+c:\users\user\documents\visual studio 2015\Projects\ProjectB\ProjectB\obj\Debug\ProjectB.csprojResolveAssemblyReference.cache
+c:\users\user\documents\visual studio 2015\Projects\ProjectB\ProjectB\obj\Debug\ProjectB.Properties.Resources.resources
+c:\users\user\documents\visual studio 2015\Projects\ProjectB\ProjectB\obj\Debug\ProjectB.csproj.GenerateResource.Cache
+c:\users\user\documents\visual studio 2015\Projects\ProjectB\ProjectB\bin\Debug\ProjectB.exe
+c:\users\user\documents\visual studio 2015\Projects\ProjectB\ProjectB\bin\Debug\ProjectB.pdb
+c:\users\user\documents\visual studio 2015\Projects\ProjectB\ProjectB\obj\Debug\ProjectB.exe
+c:\users\user\documents\visual studio 2015\Projects\ProjectB\ProjectB\obj\Debug\ProjectB.pdb
+c:\users\user\documents\visual studio 2015\Projects\ProjectB\ProjectB\obj\Debug\ProjectB.FormMain.resources
+C:\Users\User\documents\visual studio 2015\Projects\ProjectB\ProjectB\obj\Debug\ProjectB.FormAddStudents.resources
+C:\Users\User\documents\visual studio 2015\Projects\ProjectB\ProjectB\obj\Debug\ProjectB.FormManageStudents.resources
+C:\Users\User\documents\visual studio 2015\Projects\ProjectB\ProjectB\obj\Debug\ProjectB.FormStudentAttendance.resources
+C:\Users\User\documents\visual studio 2015\Projects\ProjectB\ProjectB\obj\Debug\ProjectB.FormManageClos.resources
