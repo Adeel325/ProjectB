@@ -75,12 +75,24 @@ namespace ProjectB
         {
             panelLeft.Height = btnManageRubrics.Height;
             panelLeft.Top = btnManageRubrics.Top;
+
+            //start
+            this.Hide();
+            RubricForm frm = new RubricForm();
+            frm.Show();
         }
 
         private void btnManageRubricsLevels_Click(object sender, EventArgs e)
         {
             panelLeft.Height = btnManageRubricsLevels.Height;
             panelLeft.Top = btnManageRubricsLevels.Top;
+
+            //start
+            this.Hide();
+            FormRubricLevels frm = new FormRubricLevels();
+            frm.Show();
+
+            
         }
 
         private void btnMarkEvaluation_Click(object sender, EventArgs e)

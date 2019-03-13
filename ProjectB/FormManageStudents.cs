@@ -30,11 +30,11 @@ namespace ProjectB
 
         private void btnAddStudentAttendance_Click(object sender, EventArgs e)
         {
-            panelLeft.Height = btnAddStudentAttendance.Height;
-            panelLeft.Top = btnAddStudentAttendance.Top;
+            panelLeft.Height = btnAddStudents.Height;
+            panelLeft.Top = btnAddStudents.Top;
 
             //Go to add student attendance form
-            FormStudentAttendance frm = new FormStudentAttendance();
+            FormAddStudents frm = new FormAddStudents();
             this.Hide();
             frm.Show();
         }
@@ -43,6 +43,17 @@ namespace ProjectB
         {
             panelLeft.Height = btnAddStudents.Height;
             panelLeft.Top = btnAddStudents.Top;
+        }
+
+        private void btnGoBackToMain_Click(object sender, EventArgs e)
+        {
+            panelLeft.Height = btnGoBackToMain.Height;
+            panelLeft.Top = btnGoBackToMain.Top;
+
+            //Go to Main form
+            FormMain frm = new FormMain();
+            this.Hide();
+            frm.Show();
         }
     }
 }

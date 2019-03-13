@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnBackToMain = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -51,9 +52,11 @@
             this.labelHeader = new System.Windows.Forms.Label();
             this.goBackToManageForm = new System.Windows.Forms.Button();
             this.btnStudentForm = new System.Windows.Forms.Button();
+            this.errorProviderApp = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderApp)).BeginInit();
             this.SuspendLayout();
             // 
             // btnBackToMain
@@ -86,8 +89,9 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(216, 363);
+            this.dataGridView1.Location = new System.Drawing.Point(216, 348);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(5);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(561, 166);
@@ -101,6 +105,7 @@
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(214, 27);
             this.txtFirstName.TabIndex = 1;
+            this.txtFirstName.Validating += new System.ComponentModel.CancelEventHandler(this.txtFirstName_Validating);
             // 
             // txtLastName
             // 
@@ -109,6 +114,7 @@
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(214, 27);
             this.txtLastName.TabIndex = 3;
+            this.txtLastName.Validating += new System.ComponentModel.CancelEventHandler(this.txtLastName_Validating);
             // 
             // txtContact
             // 
@@ -117,6 +123,7 @@
             this.txtContact.Name = "txtContact";
             this.txtContact.Size = new System.Drawing.Size(214, 27);
             this.txtContact.TabIndex = 5;
+            this.txtContact.Validating += new System.ComponentModel.CancelEventHandler(this.txtContact_Validating);
             // 
             // txtEmail
             // 
@@ -125,6 +132,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(214, 27);
             this.txtEmail.TabIndex = 7;
+            this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
             // 
             // txtRegistrationNumber
             // 
@@ -133,6 +141,7 @@
             this.txtRegistrationNumber.Name = "txtRegistrationNumber";
             this.txtRegistrationNumber.Size = new System.Drawing.Size(214, 27);
             this.txtRegistrationNumber.TabIndex = 9;
+            this.txtRegistrationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txtRegistrationNumber_Validating);
             // 
             // txtStatus
             // 
@@ -141,6 +150,7 @@
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.Size = new System.Drawing.Size(214, 27);
             this.txtStatus.TabIndex = 11;
+            this.txtStatus.Validating += new System.ComponentModel.CancelEventHandler(this.txtStatus_Validating);
             // 
             // lblFirstName
             // 
@@ -212,7 +222,7 @@
             // 
             this.btnDeleteStudent.FlatAppearance.BorderSize = 0;
             this.btnDeleteStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteStudent.Location = new System.Drawing.Point(640, 322);
+            this.btnDeleteStudent.Location = new System.Drawing.Point(640, 316);
             this.btnDeleteStudent.Name = "btnDeleteStudent";
             this.btnDeleteStudent.Size = new System.Drawing.Size(137, 32);
             this.btnDeleteStudent.TabIndex = 15;
@@ -224,7 +234,7 @@
             // 
             this.btnEditStudent.FlatAppearance.BorderSize = 0;
             this.btnEditStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditStudent.Location = new System.Drawing.Point(479, 324);
+            this.btnEditStudent.Location = new System.Drawing.Point(479, 318);
             this.btnEditStudent.Name = "btnEditStudent";
             this.btnEditStudent.Size = new System.Drawing.Size(146, 31);
             this.btnEditStudent.TabIndex = 16;
@@ -248,7 +258,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(166, 543);
+            this.panel1.Size = new System.Drawing.Size(166, 525);
             this.panel1.TabIndex = 17;
             // 
             // panel3
@@ -277,7 +287,7 @@
             this.goBackToManageForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.goBackToManageForm.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.goBackToManageForm.ForeColor = System.Drawing.Color.White;
-            this.goBackToManageForm.Location = new System.Drawing.Point(3, 191);
+            this.goBackToManageForm.Location = new System.Drawing.Point(3, 195);
             this.goBackToManageForm.Name = "goBackToManageForm";
             this.goBackToManageForm.Size = new System.Drawing.Size(166, 95);
             this.goBackToManageForm.TabIndex = 2;
@@ -293,17 +303,22 @@
             this.btnStudentForm.ForeColor = System.Drawing.Color.White;
             this.btnStudentForm.Location = new System.Drawing.Point(0, 123);
             this.btnStudentForm.Name = "btnStudentForm";
-            this.btnStudentForm.Size = new System.Drawing.Size(166, 49);
+            this.btnStudentForm.Size = new System.Drawing.Size(166, 62);
             this.btnStudentForm.TabIndex = 2;
-            this.btnStudentForm.Text = "Add Students";
+            this.btnStudentForm.Text = "Add Students Form";
+            this.btnStudentForm.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnStudentForm.UseVisualStyleBackColor = true;
             this.btnStudentForm.Click += new System.EventHandler(this.btnStudentForm_Click);
+            // 
+            // errorProviderApp
+            // 
+            this.errorProviderApp.ContainerControl = this;
             // 
             // FormAddStudents
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.ClientSize = new System.Drawing.Size(829, 543);
+            this.ClientSize = new System.Drawing.Size(814, 525);
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnEditStudent);
@@ -334,6 +349,7 @@
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderApp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -364,5 +380,6 @@
         private System.Windows.Forms.Label labelHeader;
         private System.Windows.Forms.Button goBackToManageForm;
         private System.Windows.Forms.Button btnStudentForm;
+        private System.Windows.Forms.ErrorProvider errorProviderApp;
     }
 }

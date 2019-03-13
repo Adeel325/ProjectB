@@ -11,3 +11,5 @@ C:\Users\User\documents\visual studio 2015\Projects\ProjectB\ProjectB\obj\Debug\
 C:\Users\User\documents\visual studio 2015\Projects\ProjectB\ProjectB\obj\Debug\ProjectB.FormManageStudents.resources
 C:\Users\User\documents\visual studio 2015\Projects\ProjectB\ProjectB\obj\Debug\ProjectB.FormStudentAttendance.resources
 C:\Users\User\documents\visual studio 2015\Projects\ProjectB\ProjectB\obj\Debug\ProjectB.FormManageClos.resources
+C:\Users\User\Documents\Visual Studio 2015\Projects\ProjectB\ProjectB\obj\Debug\ProjectB.RubricForm.resources
+C:\Users\User\documents\visual studio 2015\Projects\ProjectB\ProjectB\obj\Debug\ProjectB.FormRubricLevels.resources

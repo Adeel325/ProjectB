@@ -31,6 +31,16 @@ namespace ProjectB
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (ValidateChildren(ValidationConstraints.Enabled))
+            {
+                MessageBox.Show(txtFirstName.Text, "Demo App - Message!");
+                MessageBox.Show(txtLastName.Text, "Demo App - Message!");
+                MessageBox.Show(txtContact.Text, "Demo App - Message!");
+                MessageBox.Show(txtEmail.Text, "Demo App - Message!");
+                MessageBox.Show(txtRegistrationNumber.Text, "Demo App - Message!");
+                MessageBox.Show(txtStatus.Text, "Demo App - Message!");
+            }
+
             SqlConnection conn = new SqlConnection(conURL);
             conn.Open();
 
@@ -55,16 +65,9 @@ namespace ProjectB
                 SqlCommand command = new SqlCommand(cmd, conn);
                 command.ExecuteNonQuery();
                 MessageBox.Show("Record Inserted Successfully");
+                DisplayStudentData();
+                ClearStudentData();
             }
-            else
-            {
-                MessageBox.Show("Please Provide Details!");
-            }
-            //Show data in datagridview
-            //DisplayStudentData();
-            //clear data
-            ClearStudentData();
-
         }
         //Clear Data  
         public void ClearStudentData()
@@ -83,15 +86,16 @@ namespace ProjectB
             SqlConnection conn = new SqlConnection(conURL);
             conn.Open();
             DataTable dt = new DataTable();
-            SqlDataAdapter adapt = new SqlDataAdapter("select * from Student", conn);
+            SqlDataAdapter adapt = new SqlDataAdapter("SELECT * FROM Student", conn);
             adapt.Fill(dt);
             dataGridView1.DataSource = dt;
+            dataGridView1.ForeColor = Color.Black;
             conn.Close();
         }
 
         private void FormManageStudents_Load(object sender, EventArgs e)
         {
-            //DisplayStudentData();
+            DisplayStudentData();
         }
 
         //dataGridView1 RowHeaderMouseClick Event  
@@ -113,6 +117,15 @@ namespace ProjectB
 
         private void btnEditStudent_Click(object sender, EventArgs e)
         {
+            if (ValidateChildren(ValidationConstraints.Enabled))
+            {
+                MessageBox.Show(txtFirstName.Text, "Demo App - Message!");
+                MessageBox.Show(txtLastName.Text, "Demo App - Message!");
+                MessageBox.Show(txtContact.Text, "Demo App - Message!");
+                MessageBox.Show(txtEmail.Text, "Demo App - Message!");
+                MessageBox.Show(txtRegistrationNumber.Text, "Demo App - Message!");
+                MessageBox.Show(txtStatus.Text, "Demo App - Message!");
+            }
             if (txtFirstName.Text != "" &&
                 txtLastName.Text != "" &&
                 txtContact.Text != "" &&
@@ -133,13 +146,14 @@ namespace ProjectB
                 cmd.Parameters.AddWithValue("@st", txtStatus.Text);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Record Updated Successfully");
+                DisplayStudentData();
                 conn.Close();
                 DisplayStudentData();
                 ClearStudentData();
             }
             else
             {
-                MessageBox.Show("Please Select Record to Update");
+                MessageBox.Show("Click on the row of datagridview to which you wanna update");
             }
         }
 
@@ -179,6 +193,98 @@ namespace ProjectB
             this.Hide();
             FormManageStudents frm = new FormManageStudents();
             frm.Show();
+        }
+
+        //validations
+
+        private void txtFirstName_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtFirstName.Text))
+            {
+                e.Cancel = true;
+                txtFirstName.Focus();
+                errorProviderApp.SetError(txtFirstName, "First Name should not be left blank!");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderApp.SetError(txtFirstName, "");
+            }
+        }
+
+        private void txtLastName_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtLastName.Text))
+            {
+                e.Cancel = true;
+                txtLastName.Focus();
+                errorProviderApp.SetError(txtLastName, "Last Name should not be left blank!");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderApp.SetError(txtLastName, "");
+            }
+        }
+
+        private void txtContact_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtContact.Text))
+            {
+                e.Cancel = true;
+                txtContact.Focus();
+                errorProviderApp.SetError(txtContact, "Contact should not be left blank!");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderApp.SetError(txtContact, "");
+            }
+        }
+
+        private void txtEmail_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                e.Cancel = true;
+                txtEmail.Focus();
+                errorProviderApp.SetError(txtEmail, "Email should not be left blank!");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderApp.SetError(txtEmail, "");
+            }
+        }
+
+        private void txtRegistrationNumber_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtRegistrationNumber.Text))
+            {
+                e.Cancel = true;
+                txtRegistrationNumber.Focus();
+                errorProviderApp.SetError(txtRegistrationNumber, "Registration Number should not be left blank!");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderApp.SetError(txtRegistrationNumber, "");
+            }
+        }
+
+        private void txtStatus_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtStatus.Text))
+            {
+                e.Cancel = true;
+                txtStatus.Focus();
+                errorProviderApp.SetError(txtStatus, "Status should not be left blank!");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderApp.SetError(txtStatus, "");
+            }
         }
     }
 }

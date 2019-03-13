@@ -14,6 +14,8 @@ namespace ProjectB
     public partial class FormManageClos : Form
     {
         string conURL = "Data Source=RANA-ADEEL;Initial Catalog=ProjectB;User ID=sa;Password=12345;MultipleActiveResultSets=True";
+        //ID variable used in Updating and Deleting Record  
+        int ID = 0;
         public FormManageClos()
         {
             InitializeComponent();
@@ -42,32 +44,29 @@ namespace ProjectB
 
         private void btnAddClo_Click(object sender, EventArgs e)
         {
+            if (ValidateChildren(ValidationConstraints.Enabled))
+            {
+                MessageBox.Show(txtName.Text, "Demo App - Message!");
+            }
             SqlConnection conn = new SqlConnection(conURL);
             conn.Open();
 
-            if (txtName.Text != "" &&
-                dateTimePicker1.Text != "" &&
-                dateTimePicker2.Text != ""
-                )
+            if (txtName.Text != "")
             {
                 //Store data
                 string Name = txtName.Text;
-                var dateCreated = Convert.ToDateTime(dateTimePicker1.Text);
-                var dateUpdated = Convert.ToDateTime(dateTimePicker2.Text);
+                var dateCreated = DateTime.Now;
+                var dateUpdated = DateTime.Now;
 
                 //insert data
                 string cmd = "INSERT INTO Clo VALUES('" + Name + "', '" + dateCreated + "', '" + dateUpdated + "')";
                 SqlCommand command = new SqlCommand(cmd, conn);
                 command.ExecuteNonQuery();
                 MessageBox.Show("Record Inserted Successfully");
+                DisplayClos();
+                //clear data
+                ClearCloData();
             }
-            else
-            {
-                MessageBox.Show("Please Provide Details!");
-            }
-       
-            //clear data
-            ClearCloData();
         }
         //Display Data in DataGridView  
         private void DisplayClos()
@@ -83,8 +82,72 @@ namespace ProjectB
         public void ClearCloData()
         {
             txtName.Text = "";
-            dateTimePicker1.Text = "";
-            dateTimePicker2.Text = "";
+            
+        }
+
+        private void FormManageClos_Load(object sender, EventArgs e)
+        {
+
+        }  
+
+        private void btnEditClo_Click(object sender, EventArgs e)
+        {
+            if (ValidateChildren(ValidationConstraints.Enabled))
+            {
+                MessageBox.Show(txtName.Text, "Demo App - Message!");
+            }
+            if (txtName.Text != "")
+            {
+                SqlConnection conn = new SqlConnection(conURL);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("update Clo set Name=@name, DateUpdated=@dateUpdated where ID=@id", conn);
+                cmd.Parameters.AddWithValue("@id", ID);
+                cmd.Parameters.AddWithValue("@name", txtName.Text);
+                cmd.Parameters.AddWithValue("@dateUpdated", DateTime.Now);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Record Updated Successfully");
+                DisplayClos();
+                conn.Close();
+                ClearCloData();
+            }
+            else
+            {
+                MessageBox.Show("Please Select Row from DataGridView which you wanna update");
+            }
+        }
+
+        //dataGridView1 RowHeaderMouseClick Event
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+
+                    ID = Convert.ToInt32(row.Cells["Id"].Value.ToString());
+                    txtName.Text = row.Cells["Name"].Value.ToString();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("error");
+            }
+        }
+
+        private void txtName_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                e.Cancel = true;
+                txtName.Focus();
+                errorProviderApp.SetError(txtName, "Status should not be left blank!");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProviderApp.SetError(txtName, "");
+            }
         }
     }
 }

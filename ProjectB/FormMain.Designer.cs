@@ -40,20 +40,23 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.labelHeader = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnConnection
             // 
             this.btnConnection.FlatAppearance.BorderSize = 0;
             this.btnConnection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConnection.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConnection.ForeColor = System.Drawing.Color.White;
-            this.btnConnection.Location = new System.Drawing.Point(639, 12);
+            this.btnConnection.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConnection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
+            this.btnConnection.Location = new System.Drawing.Point(-4, 0);
             this.btnConnection.Name = "btnConnection";
-            this.btnConnection.Size = new System.Drawing.Size(137, 54);
+            this.btnConnection.Size = new System.Drawing.Size(156, 94);
             this.btnConnection.TabIndex = 0;
             this.btnConnection.Text = "Test Connection";
             this.btnConnection.UseVisualStyleBackColor = true;
@@ -156,7 +159,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(166, 535);
+            this.panel1.Size = new System.Drawing.Size(193, 535);
             this.panel1.TabIndex = 3;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -181,7 +184,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(166, 82);
+            this.panel3.Size = new System.Drawing.Size(193, 82);
             this.panel3.TabIndex = 5;
             // 
             // labelHeader
@@ -196,16 +199,27 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.panel4);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(166, 312);
+            this.panel2.Location = new System.Drawing.Point(193, 312);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(622, 223);
+            this.panel2.Size = new System.Drawing.Size(229, 223);
             this.panel2.TabIndex = 4;
+            // 
+            // panel4
+            // 
+            this.panel4.AutoSize = true;
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.panel4.Controls.Add(this.btnConnection);
+            this.panel4.Location = new System.Drawing.Point(74, 123);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(155, 100);
+            this.panel4.TabIndex = 6;
             // 
             // panelLeft
             // 
             this.panelLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.panelLeft.Location = new System.Drawing.Point(167, 101);
+            this.panelLeft.Location = new System.Drawing.Point(193, 101);
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Size = new System.Drawing.Size(7, 51);
             this.panelLeft.TabIndex = 5;
@@ -214,20 +228,22 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.ClientSize = new System.Drawing.Size(788, 535);
+            this.ClientSize = new System.Drawing.Size(422, 535);
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnConnection);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "FormMain";
-            this.Text = "s";
+            this.Text = "Main Form";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -247,6 +263,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button buttonHome;
         private System.Windows.Forms.Panel panelLeft;
+        private System.Windows.Forms.Panel panel4;
     }
 }
 

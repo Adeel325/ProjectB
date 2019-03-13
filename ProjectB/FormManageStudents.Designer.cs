@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnGoBackToMain = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.labelHeader = new System.Windows.Forms.Label();
             this.btnAddStudentAttendance = new System.Windows.Forms.Button();
@@ -39,24 +39,30 @@
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel2
-            // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(166, 315);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(630, 223);
-            this.panel2.TabIndex = 7;
-            // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnGoBackToMain);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.btnAddStudentAttendance);
             this.panel1.Controls.Add(this.btnAddStudents);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(166, 538);
+            this.panel1.Size = new System.Drawing.Size(166, 395);
             this.panel1.TabIndex = 6;
+            // 
+            // btnGoBackToMain
+            // 
+            this.btnGoBackToMain.FlatAppearance.BorderSize = 0;
+            this.btnGoBackToMain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGoBackToMain.ForeColor = System.Drawing.Color.White;
+            this.btnGoBackToMain.Location = new System.Drawing.Point(1, 250);
+            this.btnGoBackToMain.Name = "btnGoBackToMain";
+            this.btnGoBackToMain.Size = new System.Drawing.Size(165, 59);
+            this.btnGoBackToMain.TabIndex = 9;
+            this.btnGoBackToMain.Text = "Go Back To MainForm";
+            this.btnGoBackToMain.UseVisualStyleBackColor = true;
+            this.btnGoBackToMain.Click += new System.EventHandler(this.btnGoBackToMain_Click);
             // 
             // panel3
             // 
@@ -119,9 +125,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.ClientSize = new System.Drawing.Size(796, 538);
+            this.ClientSize = new System.Drawing.Size(414, 395);
             this.Controls.Add(this.panelLeft);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(120)))), ((int)(((byte)(138)))));
@@ -138,13 +143,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label labelHeader;
         private System.Windows.Forms.Button btnAddStudents;
         private System.Windows.Forms.Panel panelLeft;
         private System.Windows.Forms.Button btnAddStudentAttendance;
+        private System.Windows.Forms.Button btnGoBackToMain;
     }
 }
