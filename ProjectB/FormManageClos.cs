@@ -24,6 +24,22 @@ namespace ProjectB
             panelLeft.Top = btnGoBackToMain.Top;
         }
 
+        //Form Display Setting
+        private static FormManageClos instance;
+        public static FormManageClos SetGUIPlacements()
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new FormManageClos();
+            }
+            else
+            {
+                instance.BringToFront();
+            }
+            return instance;
+        }
+        //
+
         private void btnGoBackToMain_Click(object sender, EventArgs e)
         {
             panelLeft.Height = btnGoBackToMain.Height;

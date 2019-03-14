@@ -22,6 +22,22 @@ namespace ProjectB
             panelLeft.Top = btnRubricsForm.Top;
         }
 
+        //Form Display Setting
+        private static RubricForm instance;
+        public static RubricForm SetGUIPlacements()
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new RubricForm();
+            }
+            else
+            {
+                instance.BringToFront();
+            }
+            return instance;
+        }
+        //
+
         private void btnRubricsForm_Click(object sender, EventArgs e)
         {
             panelLeft.Height = btnRubricsForm.Height;
@@ -36,7 +52,7 @@ namespace ProjectB
 
             //start
             this.Hide();
-            FormMain frm = new FormMain();
+            FormMain frm = FormMain.SetGUIPlacements();
             frm.Show();
         }
 

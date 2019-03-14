@@ -37,7 +37,6 @@
             this.txtContact = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtRegistrationNumber = new System.Windows.Forms.TextBox();
-            this.txtStatus = new System.Windows.Forms.TextBox();
             this.lblFirstName = new System.Windows.Forms.Label();
             this.lblLastName = new System.Windows.Forms.Label();
             this.lblContact = new System.Windows.Forms.Label();
@@ -53,6 +52,7 @@
             this.goBackToManageForm = new System.Windows.Forms.Button();
             this.btnStudentForm = new System.Windows.Forms.Button();
             this.errorProviderApp = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -142,15 +142,6 @@
             this.txtRegistrationNumber.Size = new System.Drawing.Size(214, 27);
             this.txtRegistrationNumber.TabIndex = 9;
             this.txtRegistrationNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txtRegistrationNumber_Validating);
-            // 
-            // txtStatus
-            // 
-            this.txtStatus.Location = new System.Drawing.Point(412, 206);
-            this.txtStatus.Margin = new System.Windows.Forms.Padding(5);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(214, 27);
-            this.txtStatus.TabIndex = 11;
-            this.txtStatus.Validating += new System.ComponentModel.CancelEventHandler(this.txtStatus_Validating);
             // 
             // lblFirstName
             // 
@@ -314,11 +305,21 @@
             // 
             this.errorProviderApp.ContainerControl = this;
             // 
+            // cmbStatus
+            // 
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Location = new System.Drawing.Point(412, 209);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(213, 29);
+            this.cmbStatus.TabIndex = 10;
+            this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.cmbStatus_SelectedIndexChanged);
+            // 
             // FormAddStudents
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(814, 525);
+            this.Controls.Add(this.cmbStatus);
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnEditStudent);
@@ -329,7 +330,6 @@
             this.Controls.Add(this.lblContact);
             this.Controls.Add(this.lblLastName);
             this.Controls.Add(this.lblFirstName);
-            this.Controls.Add(this.txtStatus);
             this.Controls.Add(this.txtRegistrationNumber);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtContact);
@@ -365,7 +365,6 @@
         private System.Windows.Forms.TextBox txtContact;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtRegistrationNumber;
-        private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.Label lblFirstName;
         private System.Windows.Forms.Label lblLastName;
         private System.Windows.Forms.Label lblContact;
@@ -381,5 +380,6 @@
         private System.Windows.Forms.Button goBackToManageForm;
         private System.Windows.Forms.Button btnStudentForm;
         private System.Windows.Forms.ErrorProvider errorProviderApp;
+        private System.Windows.Forms.ComboBox cmbStatus;
     }
 }

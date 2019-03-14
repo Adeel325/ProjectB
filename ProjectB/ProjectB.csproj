@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassAttendanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClassAttendanceForm.Designer.cs">
+      <DependentUpon>ClassAttendanceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     <Compile Include="RubricForm.Designer.cs">
       <DependentUpon>RubricForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ClassAttendanceForm.resx">
+      <DependentUpon>ClassAttendanceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

@@ -29,18 +29,24 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAddAttendance = new System.Windows.Forms.Button();
+            this.btnAddStudent = new System.Windows.Forms.Button();
             this.btnGoBackToMain = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.labelHeader = new System.Windows.Forms.Label();
             this.btnAddStudentAttendance = new System.Windows.Forms.Button();
             this.btnAddStudents = new System.Windows.Forms.Button();
             this.panelLeft = new System.Windows.Forms.Panel();
+            this.btnAddClassAttendance = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnAddClassAttendance);
+            this.panel1.Controls.Add(this.btnAddAttendance);
+            this.panel1.Controls.Add(this.btnAddStudent);
             this.panel1.Controls.Add(this.btnGoBackToMain);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.btnAddStudentAttendance);
@@ -48,17 +54,43 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(166, 395);
+            this.panel1.Size = new System.Drawing.Size(166, 527);
             this.panel1.TabIndex = 6;
+            // 
+            // btnAddAttendance
+            // 
+            this.btnAddAttendance.FlatAppearance.BorderSize = 0;
+            this.btnAddAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddAttendance.ForeColor = System.Drawing.Color.White;
+            this.btnAddAttendance.Location = new System.Drawing.Point(0, 180);
+            this.btnAddAttendance.Name = "btnAddAttendance";
+            this.btnAddAttendance.Size = new System.Drawing.Size(166, 64);
+            this.btnAddAttendance.TabIndex = 13;
+            this.btnAddAttendance.Text = "Add Attendance Form";
+            this.btnAddAttendance.UseVisualStyleBackColor = true;
+            this.btnAddAttendance.Click += new System.EventHandler(this.btnAddAttendance_Click);
+            // 
+            // btnAddStudent
+            // 
+            this.btnAddStudent.FlatAppearance.BorderSize = 0;
+            this.btnAddStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddStudent.ForeColor = System.Drawing.Color.White;
+            this.btnAddStudent.Location = new System.Drawing.Point(0, 123);
+            this.btnAddStudent.Name = "btnAddStudent";
+            this.btnAddStudent.Size = new System.Drawing.Size(166, 51);
+            this.btnAddStudent.TabIndex = 12;
+            this.btnAddStudent.Text = "Add Student Form";
+            this.btnAddStudent.UseVisualStyleBackColor = true;
+            this.btnAddStudent.Click += new System.EventHandler(this.btnAddStudent_Click);
             // 
             // btnGoBackToMain
             // 
             this.btnGoBackToMain.FlatAppearance.BorderSize = 0;
             this.btnGoBackToMain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGoBackToMain.ForeColor = System.Drawing.Color.White;
-            this.btnGoBackToMain.Location = new System.Drawing.Point(1, 250);
+            this.btnGoBackToMain.Location = new System.Drawing.Point(-2, 313);
             this.btnGoBackToMain.Name = "btnGoBackToMain";
-            this.btnGoBackToMain.Size = new System.Drawing.Size(165, 59);
+            this.btnGoBackToMain.Size = new System.Drawing.Size(168, 59);
             this.btnGoBackToMain.TabIndex = 9;
             this.btnGoBackToMain.Text = "Go Back To MainForm";
             this.btnGoBackToMain.UseVisualStyleBackColor = true;
@@ -86,31 +118,17 @@
             // 
             // btnAddStudentAttendance
             // 
-            this.btnAddStudentAttendance.FlatAppearance.BorderSize = 0;
-            this.btnAddStudentAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddStudentAttendance.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddStudentAttendance.ForeColor = System.Drawing.Color.White;
-            this.btnAddStudentAttendance.Location = new System.Drawing.Point(3, 180);
+            this.btnAddStudentAttendance.Location = new System.Drawing.Point(0, 0);
             this.btnAddStudentAttendance.Name = "btnAddStudentAttendance";
-            this.btnAddStudentAttendance.Size = new System.Drawing.Size(166, 63);
-            this.btnAddStudentAttendance.TabIndex = 2;
-            this.btnAddStudentAttendance.Text = "Add Student Attendance";
-            this.btnAddStudentAttendance.UseVisualStyleBackColor = true;
-            this.btnAddStudentAttendance.Click += new System.EventHandler(this.btnAddStudentAttendance_Click);
+            this.btnAddStudentAttendance.Size = new System.Drawing.Size(75, 23);
+            this.btnAddStudentAttendance.TabIndex = 10;
             // 
             // btnAddStudents
             // 
-            this.btnAddStudents.FlatAppearance.BorderSize = 0;
-            this.btnAddStudents.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddStudents.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddStudents.ForeColor = System.Drawing.Color.White;
-            this.btnAddStudents.Location = new System.Drawing.Point(0, 124);
+            this.btnAddStudents.Location = new System.Drawing.Point(0, 0);
             this.btnAddStudents.Name = "btnAddStudents";
-            this.btnAddStudents.Size = new System.Drawing.Size(166, 49);
-            this.btnAddStudents.TabIndex = 2;
-            this.btnAddStudents.Text = "Add Student";
-            this.btnAddStudents.UseVisualStyleBackColor = true;
-            this.btnAddStudents.Click += new System.EventHandler(this.btnAddStudentAttendance_Click);
+            this.btnAddStudents.Size = new System.Drawing.Size(75, 23);
+            this.btnAddStudents.TabIndex = 11;
             // 
             // panelLeft
             // 
@@ -120,12 +138,25 @@
             this.panelLeft.Size = new System.Drawing.Size(7, 51);
             this.panelLeft.TabIndex = 8;
             // 
+            // btnAddClassAttendance
+            // 
+            this.btnAddClassAttendance.FlatAppearance.BorderSize = 0;
+            this.btnAddClassAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddClassAttendance.ForeColor = System.Drawing.Color.White;
+            this.btnAddClassAttendance.Location = new System.Drawing.Point(0, 251);
+            this.btnAddClassAttendance.Name = "btnAddClassAttendance";
+            this.btnAddClassAttendance.Size = new System.Drawing.Size(166, 56);
+            this.btnAddClassAttendance.TabIndex = 14;
+            this.btnAddClassAttendance.Text = "Add Class Attendance";
+            this.btnAddClassAttendance.UseVisualStyleBackColor = true;
+            this.btnAddClassAttendance.Click += new System.EventHandler(this.btnAddClassAttendance_Click);
+            // 
             // FormManageStudents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
-            this.ClientSize = new System.Drawing.Size(414, 395);
+            this.ClientSize = new System.Drawing.Size(424, 527);
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -146,9 +177,12 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label labelHeader;
-        private System.Windows.Forms.Button btnAddStudents;
         private System.Windows.Forms.Panel panelLeft;
         private System.Windows.Forms.Button btnAddStudentAttendance;
         private System.Windows.Forms.Button btnGoBackToMain;
+        internal System.Windows.Forms.Button btnAddStudents;
+        private System.Windows.Forms.Button btnAddAttendance;
+        private System.Windows.Forms.Button btnAddStudent;
+        private System.Windows.Forms.Button btnAddClassAttendance;
     }
 }

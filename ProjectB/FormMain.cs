@@ -23,6 +23,22 @@ namespace ProjectB
             panelLeft.Top = buttonHome.Top;
         }
 
+        //Form Display Setting
+        private static FormMain instance;
+        public static FormMain SetGUIPlacements()
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new FormMain();
+            }
+            else
+            {
+                instance.BringToFront();
+            }
+            return instance;
+        }
+        //
+
         private void Form1_Load(object sender, EventArgs e)
         {
            

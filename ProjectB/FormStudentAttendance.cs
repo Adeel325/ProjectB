@@ -17,40 +17,81 @@ namespace ProjectB
         public FormStudentAttendance()
         {
             InitializeComponent();
+            DisplayData();
             panelLeft.Height = btnAddAttendances.Height;
             panelLeft.Top = btnAddAttendances.Top;
         }
 
-        private void btnAddAttendance_Click(object sender, EventArgs e)
+        //Form Display Setting
+        private static FormStudentAttendance instance;
+        public static FormStudentAttendance SetGUIPlacements()
         {
-            panelLeft.Height = btnAddAttendances.Height;
-            panelLeft.Top = btnAddAttendances.Top;
-            MessageBox.Show("You are going to leave this page");
-            this.Hide();
-            FormManageStudents frm = new FormManageStudents();
-            frm.Show();
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new FormStudentAttendance();
+            }
+            else
+            {
+                instance.BringToFront();
+            }
+            return instance;
         }
-
+        //
         private void btnGoBackToManageForm_Click(object sender, EventArgs e)
         {
             panelLeft.Height = btnGoBackToManageForm.Height;
             panelLeft.Top = btnGoBackToManageForm.Top;
             MessageBox.Show("You are going to leave this page");
             this.Hide();
-            FormManageStudents frm = new FormManageStudents();
+            FormManageStudents frm = FormManageStudents.SetGUIPlacements();
             frm.Show();
         }
-        //Display Data in DataGridView  
-        private void DisplayStudentData()
+        
+
+        //function to load status
+        public void LoadStatus()
+        {
+            //load status
+            SqlConnection conn = new SqlConnection(conURL);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("select LookupId from Lookup where Category = 'ATTENDANCE_STATUS' ", conn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            //show Id's in combo box
+            cmbStatus.ValueMember = "LookupId";
+            cmbStatus.DataSource = dt;
+            
+        }
+        //Function to Add Attendance ID's in combo Box
+        public void LoadAttendanceIDs()
+        {
+            //load Attendance ID's
+            SqlConnection conn = new SqlConnection(conURL);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("select Id from ClassAttendance", conn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            //show Id's in combo box
+            cmbAttendanceId.ValueMember = "Id";
+            cmbAttendanceId.DataSource = dt;
+        }
+
+        public void DisplayData()
         {
             SqlConnection conn = new SqlConnection(conURL);
             conn.Open();
             DataTable dt = new DataTable();
-            SqlDataAdapter adapt = new SqlDataAdapter("select * from StudentAttendance", conn);
+            SqlDataAdapter adapt = new SqlDataAdapter("SELECT * FROM StudentAttendance", conn);
             adapt.Fill(dt);
             dataGridView1.DataSource = dt;
+            dataGridView1.ForeColor = Color.Black;
             conn.Close();
         }
+
         private void FormStudentAttendance_Load(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection(conURL);
@@ -63,37 +104,88 @@ namespace ProjectB
             //show Id's in combo box
             cmbStudentIds.ValueMember = "Id";
             cmbStudentIds.DataSource = dt;
+            LoadStatus();
+            LoadAttendanceIDs();
             conn.Close();
         }
 
-        private void btnAttendance_Click(object sender, EventArgs e)
+        private void btnAddStudentAttendance_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection(conURL);
             conn.Open();
 
             if (cmbStudentIds.Text != "" &&
-                txtAttendanceStatus.Text != ""
+                cmbStatus.Text != ""
                 )
             {
                 //Store data
+                int attendanceId = Convert.ToInt32(cmbAttendanceId.Text);
                 int studentId = Convert.ToInt32(cmbStudentIds.Text);
-                //
-                MessageBox.Show(Convert.ToString(studentId));
-                //
-                int attendanceStatus = Convert.ToInt32(txtAttendanceStatus.Text);
+                int attendanceStatus = Convert.ToInt32(cmbStatus.Text);
 
                 //insert data
-                //string cmd = "INSERT INTO StudentAttendance VALUES('" + studentId + "', '" + attendanceStatus + "')";
-                //SqlCommand command = new SqlCommand(cmd, conn);
-                //command.ExecuteNonQuery();
-                //MessageBox.Show("Record Inserted Successfully");
+                string cmd = "INSERT INTO StudentAttendance VALUES('"+attendanceId+"','" + studentId + "', '" + attendanceStatus + "')";
+                SqlCommand command = new SqlCommand(cmd, conn);
+                command.ExecuteNonQuery();
+                MessageBox.Show("Record Inserted Successfully");
+                DisplayData();
             }
             else
             {
                 MessageBox.Show("Please Provide Details!");
             }
-            cmbStudentIds.Text = "";
-            txtAttendanceStatus.Text = "";
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void labelHeader_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblStudentIds_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblAttendanceStatus_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbStudentIds_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void panelLeft_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void cmbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStudentAttendanceForm_Click(object sender, EventArgs e)
+        {
+            panelLeft.Height = btnStudentAttendanceForm.Height;
+            panelLeft.Top = btnStudentAttendanceForm.Top;
+            MessageBox.Show("You are already on Student Attendance Form");
         }
     }
 }

@@ -17,26 +17,19 @@ namespace ProjectB
             InitializeComponent();
         }
 
-        private void btnAddStudents_Click(object sender, EventArgs e)
+        //Form Display Setting
+        private static FormManageStudents instance;
+        public static FormManageStudents SetGUIPlacements()
         {
-            panelLeft.Height = btnAddStudents.Height;
-            panelLeft.Top = btnAddStudents.Top;
-
-            //Go to add student form
-            FormStudentAttendance frm = new FormStudentAttendance();
-            this.Hide();
-            frm.Show();
-        }
-
-        private void btnAddStudentAttendance_Click(object sender, EventArgs e)
-        {
-            panelLeft.Height = btnAddStudents.Height;
-            panelLeft.Top = btnAddStudents.Top;
-
-            //Go to add student attendance form
-            FormAddStudents frm = new FormAddStudents();
-            this.Hide();
-            frm.Show();
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new FormManageStudents();
+            }
+            else
+            {
+                instance.BringToFront();
+            }
+            return instance;
         }
 
         private void FormManageStudents_Load(object sender, EventArgs e)
@@ -51,8 +44,41 @@ namespace ProjectB
             panelLeft.Top = btnGoBackToMain.Top;
 
             //Go to Main form
-            FormMain frm = new FormMain();
+            FormMain frm = FormMain.SetGUIPlacements();
             this.Hide();
+            frm.Show();
+        }
+
+        private void btnAddStudent_Click(object sender, EventArgs e)
+        {
+            panelLeft.Height = btnAddStudent.Height;
+            panelLeft.Top = btnAddStudent.Top;
+
+            //Go to add student form
+            FormAddStudents frm = FormAddStudents.SetGUIPlacements();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void btnAddAttendance_Click(object sender, EventArgs e)
+        {
+            panelLeft.Height = btnAddAttendance.Height;
+            panelLeft.Top = btnAddAttendance.Top;
+
+            //Go to student Attendance form
+            FormStudentAttendance frm = FormStudentAttendance.SetGUIPlacements();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void btnAddClassAttendance_Click(object sender, EventArgs e)
+        {
+            panelLeft.Height = btnAddClassAttendance.Height;
+            panelLeft.Top = btnAddClassAttendance.Top;
+
+            // go to class Attendance form
+            this.Hide();
+            ClassAttendanceForm frm = ClassAttendanceForm.SetGUIPlacements();
             frm.Show();
         }
     }

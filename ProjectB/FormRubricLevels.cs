@@ -22,6 +22,22 @@ namespace ProjectB
             panelLeft.Top = btnRubricLevelForm.Top;
         }
 
+        //Form Display Setting
+        private static FormRubricLevels instance;
+        public static FormRubricLevels SetGUIPlacements()
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new FormRubricLevels();
+            }
+            else
+            {
+                instance.BringToFront();
+            }
+            return instance;
+        }
+        //
+
         private void btnRubricLevelForm_Click(object sender, EventArgs e)
         {
             panelLeft.Height = btnRubricLevelForm.Height;
@@ -36,7 +52,7 @@ namespace ProjectB
 
             //start
             this.Hide();
-            FormMain frm = new FormMain();
+            FormMain frm = FormMain.SetGUIPlacements();
             frm.Show();
 
         }

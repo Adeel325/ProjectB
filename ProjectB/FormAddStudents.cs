@@ -22,6 +22,22 @@ namespace ProjectB
             DisplayStudentData();
         }
 
+        //Form Display Setting
+        private static FormAddStudents instance;
+        public static FormAddStudents SetGUIPlacements()
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new FormAddStudents();
+            }
+            else
+            {
+                instance.BringToFront();
+            }
+            return instance;
+        }
+        //
+
         private void btnBackToMain_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -38,7 +54,7 @@ namespace ProjectB
                 MessageBox.Show(txtContact.Text, "Demo App - Message!");
                 MessageBox.Show(txtEmail.Text, "Demo App - Message!");
                 MessageBox.Show(txtRegistrationNumber.Text, "Demo App - Message!");
-                MessageBox.Show(txtStatus.Text, "Demo App - Message!");
+                MessageBox.Show(cmbStatus.Text, "Demo App - Message!");
             }
 
             SqlConnection conn = new SqlConnection(conURL);
@@ -49,7 +65,7 @@ namespace ProjectB
                 txtContact.Text != "" && 
                 txtEmail.Text != "" &&
                 txtRegistrationNumber.Text != "" &&
-                txtStatus.Text != ""
+                cmbStatus.Text != ""
                 )
             {
                 //Store data
@@ -58,7 +74,7 @@ namespace ProjectB
                 string contact = txtContact.Text;
                 string email = txtEmail.Text;
                 string registrationNumber = txtRegistrationNumber.Text;
-                int status = Convert.ToInt32(txtStatus.Text);
+                int status = Convert.ToInt32(cmbStatus.Text);
 
                 //insert data
                 string cmd = "INSERT INTO Student VALUES('" + firstName + "', '" + lastName + "', '" + contact + "', '" + email + "', '" + registrationNumber + "', '" + status + "')";
@@ -77,7 +93,6 @@ namespace ProjectB
             txtContact.Text = "";
             txtEmail.Text = "";
             txtRegistrationNumber.Text = "";
-            txtStatus.Text = "";
         }
 
         //Display Data in DataGridView  
@@ -95,6 +110,20 @@ namespace ProjectB
 
         private void FormManageStudents_Load(object sender, EventArgs e)
         {
+            //load data
+            SqlConnection conn = new SqlConnection(conURL);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("select LookupId from Lookup where Category = 'STUDENT_STATUS' ", conn);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+
+            //show Id's in combo box
+            cmbStatus.ValueMember = "LookupId";
+            cmbStatus.DataSource = dt;
+            conn.Close();
+
+            //display data
             DisplayStudentData();
         }
 
@@ -111,7 +140,7 @@ namespace ProjectB
                 txtContact.Text = row.Cells["Contact"].Value.ToString();
                 txtEmail.Text = row.Cells["Email"].Value.ToString();
                 txtRegistrationNumber.Text = row.Cells["RegistrationNumber"].Value.ToString();
-                txtStatus.Text = row.Cells["Status"].Value.ToString();
+                cmbStatus.Text = row.Cells["Status"].Value.ToString();
             }
         }
 
@@ -124,14 +153,14 @@ namespace ProjectB
                 MessageBox.Show(txtContact.Text, "Demo App - Message!");
                 MessageBox.Show(txtEmail.Text, "Demo App - Message!");
                 MessageBox.Show(txtRegistrationNumber.Text, "Demo App - Message!");
-                MessageBox.Show(txtStatus.Text, "Demo App - Message!");
+                MessageBox.Show(cmbStatus.Text, "Demo App - Message!");
             }
             if (txtFirstName.Text != "" &&
                 txtLastName.Text != "" &&
                 txtContact.Text != "" &&
                 txtEmail.Text != "" &&
                 txtRegistrationNumber.Text != "" &&
-                txtStatus.Text != ""
+                cmbStatus.Text != ""
                 )
             {
                 SqlConnection conn = new SqlConnection(conURL);
@@ -143,7 +172,7 @@ namespace ProjectB
                 cmd.Parameters.AddWithValue("@con", txtContact.Text);
                 cmd.Parameters.AddWithValue("@em", txtEmail.Text);
                 cmd.Parameters.AddWithValue("@regNum", txtRegistrationNumber.Text);
-                cmd.Parameters.AddWithValue("@st", txtStatus.Text);
+                cmd.Parameters.AddWithValue("@st", cmbStatus.Text);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Record Updated Successfully");
                 DisplayStudentData();
@@ -274,17 +303,22 @@ namespace ProjectB
 
         private void txtStatus_Validating(object sender, CancelEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtStatus.Text))
+            if (string.IsNullOrWhiteSpace(cmbStatus.Text))
             {
                 e.Cancel = true;
-                txtStatus.Focus();
-                errorProviderApp.SetError(txtStatus, "Status should not be left blank!");
+                cmbStatus.Focus();
+                errorProviderApp.SetError(cmbStatus, "Status should not be left blank!");
             }
             else
             {
                 e.Cancel = false;
-                errorProviderApp.SetError(txtStatus, "");
+                errorProviderApp.SetError(cmbStatus, "");
             }
+        }
+
+        private void cmbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
