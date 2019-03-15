@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,6 +15,7 @@ namespace ProjectB
     public partial class FormRubricLevels : Form
     {
         string conURL = "Data Source=RANA-ADEEL;Initial Catalog=ProjectB;User ID=sa;Password=12345;MultipleActiveResultSets=True";
+        int ID = 0;
         public FormRubricLevels()
         {
             InitializeComponent();
@@ -62,35 +64,49 @@ namespace ProjectB
             SqlConnection conn = new SqlConnection(conURL);
             conn.Open();
 
-            //if data is not valid
-            if (ValidateChildren(ValidationConstraints.Enabled))
-            {
-                MessageBox.Show(richTextBox1.Text, "Demo App - Message!");
-                MessageBox.Show(txtMeasurementLevel.Text, "Demo App - Message!");
-            }
+            
             //if data is valid
             if(richTextBox1.Text !="" &&
                 txtMeasurementLevel.Text !="")
             {
-                //Store data
-                string rubricid = cmbRubricIds.Text;
-                string details = richTextBox1.Text;
-                string measurementLevel = txtMeasurementLevel.Text;
+                if (!Regex.IsMatch(cmbRubricIds.Text, @"[0-9]"))
+                {
+                    MessageBox.Show("Invalid Rubric ID");
+                }
+                else if (!Regex.IsMatch(richTextBox1.Text, @"[A-Za-z]"))
+                {
+                    MessageBox.Show("Invalid Details");
+                }
+                else if (!Regex.IsMatch(txtMeasurementLevel.Text, @"[0-9]") || Convert.ToInt32(txtMeasurementLevel.Text) > 4 || Convert.ToInt32(txtMeasurementLevel.Text) <= 0)
+                {
+                    MessageBox.Show("Invalid Measurement Level. It should be a number between 1-4");
+                }
+                else
+                {
+                    //Store data
+                    string rubricid = cmbRubricIds.Text;
+                    string details = richTextBox1.Text;
+                    string measurementlvl = txtMeasurementLevel.Text;
 
-                //insert data
-                string cmd = "INSERT INTO RubricLevel VALUES('" + rubricid + "', '" + details + "', '" + measurementLevel + "')";
-                SqlCommand command = new SqlCommand(cmd, conn);
-                command.ExecuteNonQuery();
-                MessageBox.Show("Record Inserted Successfully");
-                DisplayData();
-                //clear data
-                ClearData();
+                    //insert data
+                    string cmd = "INSERT INTO RubricLevel VALUES('" + rubricid + "', '" + details + "', '" + measurementlvl + "')";
+                    SqlCommand command = new SqlCommand(cmd, conn);
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Record Inserted Successfully");
+                    DisplayData();
+                    //clear data
+                    ClearData();
+                }              
+            }
+            else
+            {
+                MessageBox.Show("Insert Data First!");
             }
         }
         public void ClearData()
         {
             richTextBox1.Text = "";
-            lblMeasurementLevel.Text = "";
+            txtMeasurementLevel.Text = "";
         }
         public void DisplayData()
         {
@@ -149,6 +165,83 @@ namespace ProjectB
             {
                 e.Cancel = false;
                 errorProviderApp.SetError(txtMeasurementLevel, "");
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
+
+                ID = Convert.ToInt32(row.Cells["Id"].Value.ToString());
+                cmbRubricIds.Text = row.Cells["RubricId"].Value.ToString();
+                richTextBox1.Text = row.Cells["Details"].Value.ToString();
+                txtMeasurementLevel.Text = row.Cells["MeasurementLevel"].Value.ToString();
+
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (txtMeasurementLevel.Text != "" &&
+               richTextBox1.Text != "" &&
+               cmbRubricIds.Text != ""
+               )
+            {
+                if (!Regex.IsMatch(cmbRubricIds.Text, @"[0-9]"))
+                {
+                    MessageBox.Show("Invalid Rubric ID");
+                }
+                else if (!Regex.IsMatch(richTextBox1.Text, @"[A-Za-z]"))
+                {
+                    MessageBox.Show("Invalid Details");
+                }
+                else if (!Regex.IsMatch(txtMeasurementLevel.Text, @"[0-9]") || Convert.ToInt32(txtMeasurementLevel.Text) > 4 || Convert.ToInt32(txtMeasurementLevel.Text) <= 0)
+                {
+                    MessageBox.Show("Invalid Measurement Level. It should be a number between 1-4");
+                }
+
+                else
+                {
+                    SqlConnection conn = new SqlConnection(conURL);
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("update RubricLevel set RubricId=@rubricId, Details=@details, MeasurementLevel=@lvl where ID=@id", conn);
+                    cmd.Parameters.AddWithValue("@id", ID);
+                    cmd.Parameters.AddWithValue("@rubricId", cmbRubricIds.Text);
+                    cmd.Parameters.AddWithValue("@details", richTextBox1.Text);
+                    cmd.Parameters.AddWithValue("@lvl", txtMeasurementLevel.Text);
+
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Record Updated Successfully");
+                    DisplayData();
+                    ClearData();
+                    conn.Close();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Click on the record of datagridview to which you wanna update");
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (ID != 0)
+            {
+                SqlConnection conn = new SqlConnection(conURL);
+                SqlCommand cmd = new SqlCommand("delete RubricLevel where ID=@id", conn);
+                conn.Open();
+                cmd.Parameters.AddWithValue("@id", ID);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                MessageBox.Show("Record Deleted Successfully!");
+                DisplayData();
+                ClearData();
+            }
+            else
+            {
+                MessageBox.Show("Please Select Record to Delete");
             }
         }
     }

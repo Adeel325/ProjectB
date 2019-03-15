@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -40,23 +41,14 @@ namespace ProjectB
 
         private void btnBackToMain_Click(object sender, EventArgs e)
         {
+            //Set the pannel height
             this.Hide();
             FormMain main = new FormMain();
             main.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            if (ValidateChildren(ValidationConstraints.Enabled))
-            {
-                MessageBox.Show(txtFirstName.Text, "Demo App - Message!");
-                MessageBox.Show(txtLastName.Text, "Demo App - Message!");
-                MessageBox.Show(txtContact.Text, "Demo App - Message!");
-                MessageBox.Show(txtEmail.Text, "Demo App - Message!");
-                MessageBox.Show(txtRegistrationNumber.Text, "Demo App - Message!");
-                MessageBox.Show(cmbStatus.Text, "Demo App - Message!");
-            }
-
+        {   
             SqlConnection conn = new SqlConnection(conURL);
             conn.Open();
 
@@ -69,20 +61,48 @@ namespace ProjectB
                 )
             {
                 //Store data
-                string firstName = txtFirstName.Text;
-                string lastName = txtLastName.Text;
-                string contact = txtContact.Text;
-                string email = txtEmail.Text;
-                string registrationNumber = txtRegistrationNumber.Text;
-                int status = Convert.ToInt32(cmbStatus.Text);
+                if (!Regex.IsMatch(txtFirstName.Text, @"[A-Za-z]"))
+                {
+                    MessageBox.Show("Invalid First Name");
+                }
+                else if (!Regex.IsMatch(txtLastName.Text, @"[A-Za-z]"))
+                {
+                    MessageBox.Show("Invalid Contact");
+                }
+                else if(!Regex.IsMatch(txtContact.Text, @"[0-9]") || txtContact.Text.Length != 11)
+                {
+                    MessageBox.Show("Invalid Contact");
+                }
+                else if (!Regex.IsMatch(txtEmail.Text, @"\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"))
+                {
+                    MessageBox.Show("Invalid Email");
+                }
+                else if (!Regex.IsMatch(txtRegistrationNumber.Text, @"[A-Za-z0-9-]") || txtRegistrationNumber.Text.Length < 6)
+                {
+                    MessageBox.Show("Invalid Registration Number");
+                }
+                else if (!Regex.IsMatch(cmbStatus.Text, @"[0-9]"))
+                {
+                    MessageBox.Show("Invalid Status");
+                }
+                else
+                {
+                    string firstName = txtFirstName.Text;
+                    string lastName = txtLastName.Text;
+                    string contact = txtContact.Text;
+                    string email = txtEmail.Text;
+                    string registrationNumber = txtRegistrationNumber.Text;
+                    int status = Convert.ToInt32(cmbStatus.Text);
 
-                //insert data
-                string cmd = "INSERT INTO Student VALUES('" + firstName + "', '" + lastName + "', '" + contact + "', '" + email + "', '" + registrationNumber + "', '" + status + "')";
-                SqlCommand command = new SqlCommand(cmd, conn);
-                command.ExecuteNonQuery();
-                MessageBox.Show("Record Inserted Successfully");
-                DisplayStudentData();
-                ClearStudentData();
+                    //insert data
+                    string cmd = "INSERT INTO Student VALUES('" + firstName + "', '" + lastName + "', '" + contact + "', '" + email + "', '" + registrationNumber + "', '" + status + "')";
+                    SqlCommand command = new SqlCommand(cmd, conn);
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Record Inserted Successfully");
+                    DisplayStudentData();
+                    ClearStudentData();
+                }
+                
             }
         }
         //Clear Data  
@@ -146,15 +166,7 @@ namespace ProjectB
 
         private void btnEditStudent_Click(object sender, EventArgs e)
         {
-            if (ValidateChildren(ValidationConstraints.Enabled))
-            {
-                MessageBox.Show(txtFirstName.Text, "Demo App - Message!");
-                MessageBox.Show(txtLastName.Text, "Demo App - Message!");
-                MessageBox.Show(txtContact.Text, "Demo App - Message!");
-                MessageBox.Show(txtEmail.Text, "Demo App - Message!");
-                MessageBox.Show(txtRegistrationNumber.Text, "Demo App - Message!");
-                MessageBox.Show(cmbStatus.Text, "Demo App - Message!");
-            }
+            
             if (txtFirstName.Text != "" &&
                 txtLastName.Text != "" &&
                 txtContact.Text != "" &&
@@ -163,26 +175,53 @@ namespace ProjectB
                 cmbStatus.Text != ""
                 )
             {
-                SqlConnection conn = new SqlConnection(conURL);
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("update Student set FirstName=@fname, LastName=@lname, Contact=@con, Email=@em, RegistrationNumber=@regNum, Status=@st where ID=@id", conn);
-                cmd.Parameters.AddWithValue("@id", ID);
-                cmd.Parameters.AddWithValue("@fname", txtFirstName.Text);
-                cmd.Parameters.AddWithValue("@lname", txtLastName.Text);
-                cmd.Parameters.AddWithValue("@con", txtContact.Text);
-                cmd.Parameters.AddWithValue("@em", txtEmail.Text);
-                cmd.Parameters.AddWithValue("@regNum", txtRegistrationNumber.Text);
-                cmd.Parameters.AddWithValue("@st", cmbStatus.Text);
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Record Updated Successfully");
-                DisplayStudentData();
-                conn.Close();
-                DisplayStudentData();
-                ClearStudentData();
+                if (!Regex.IsMatch(txtFirstName.Text, @"[A-Za-z]"))
+                {
+                    MessageBox.Show("Invalid First Name");
+                }
+                else if (!Regex.IsMatch(txtLastName.Text, @"[A-Za-z]"))
+                {
+                    MessageBox.Show("Invalid Contact");
+                }
+                else if (!Regex.IsMatch(txtContact.Text, @"[0-9]") || txtContact.Text.Length != 11)
+                {
+                    MessageBox.Show("Invalid Contact");
+                }
+                else if (!Regex.IsMatch(txtEmail.Text, @"\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"))
+                {
+                    MessageBox.Show("Invalid Email");
+                }
+                else if (!Regex.IsMatch(txtRegistrationNumber.Text, @"[A-Za-z0-9-]") || txtRegistrationNumber.Text.Length < 6)
+                {
+                    MessageBox.Show("Invalid Registration Number");
+                }
+                else if (!Regex.IsMatch(cmbStatus.Text, @"[0-9]"))
+                {
+                    MessageBox.Show("Invalid Status");
+                }
+                else
+                {
+                    SqlConnection conn = new SqlConnection(conURL);
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("update Student set FirstName=@fname, LastName=@lname, Contact=@con, Email=@em, RegistrationNumber=@regNum, Status=@st where ID=@id", conn);
+                    cmd.Parameters.AddWithValue("@id", ID);
+                    cmd.Parameters.AddWithValue("@fname", txtFirstName.Text);
+                    cmd.Parameters.AddWithValue("@lname", txtLastName.Text);
+                    cmd.Parameters.AddWithValue("@con", txtContact.Text);
+                    cmd.Parameters.AddWithValue("@em", txtEmail.Text);
+                    cmd.Parameters.AddWithValue("@regNum", txtRegistrationNumber.Text);
+                    cmd.Parameters.AddWithValue("@st", cmbStatus.Text);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Record Updated Successfully");
+                    DisplayStudentData();
+                    conn.Close();
+                    DisplayStudentData();
+                    ClearStudentData();
+                }
             }
             else
             {
-                MessageBox.Show("Click on the row of datagridview to which you wanna update");
+                MessageBox.Show("Click on the record of datagridview to which you wanna update");
             }
         }
 
@@ -317,6 +356,16 @@ namespace ProjectB
         }
 
         private void cmbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }

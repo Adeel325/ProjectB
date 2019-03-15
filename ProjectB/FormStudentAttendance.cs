@@ -119,16 +119,32 @@ namespace ProjectB
                 )
             {
                 //Store data
-                int attendanceId = Convert.ToInt32(cmbAttendanceId.Text);
-                int studentId = Convert.ToInt32(cmbStudentIds.Text);
-                int attendanceStatus = Convert.ToInt32(cmbStatus.Text);
+                if (!cmbAttendanceId.Text.All(Char.IsDigit))
+                {
+                    MessageBox.Show("Attendance ID Should be an integer!");
+                }
+                else if (!cmbStudentIds.Text.All(Char.IsDigit))
+                {
+                    MessageBox.Show("Student ID Should be an integer!");
+                }
+                else if (!cmbStatus.Text.All(char.IsDigit))
+                {
+                    MessageBox.Show("Attendance Status Should be an integer!");
+                }
+                else
+                {
+                    int attendanceId = Convert.ToInt32(cmbAttendanceId.Text);
+                    int studentId = Convert.ToInt32(cmbStudentIds.Text);
+                    int attendanceStatus = Convert.ToInt32(cmbStatus.Text);
 
-                //insert data
-                string cmd = "INSERT INTO StudentAttendance VALUES('"+attendanceId+"','" + studentId + "', '" + attendanceStatus + "')";
-                SqlCommand command = new SqlCommand(cmd, conn);
-                command.ExecuteNonQuery();
-                MessageBox.Show("Record Inserted Successfully");
-                DisplayData();
+                    //insert data
+                    string cmd = "INSERT INTO StudentAttendance VALUES('" + attendanceId + "','" + studentId + "', '" + attendanceStatus + "')";
+                    SqlCommand command = new SqlCommand(cmd, conn);
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Record Inserted Successfully");
+                    DisplayData();
+                }
+                
             }
             else
             {

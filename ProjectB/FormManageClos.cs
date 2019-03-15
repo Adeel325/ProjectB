@@ -60,10 +60,6 @@ namespace ProjectB
 
         private void btnAddClo_Click(object sender, EventArgs e)
         {
-            if (ValidateChildren(ValidationConstraints.Enabled))
-            {
-                MessageBox.Show(txtName.Text, "Demo App - Message!");
-            }
             SqlConnection conn = new SqlConnection(conURL);
             conn.Open();
 
@@ -108,10 +104,6 @@ namespace ProjectB
 
         private void btnEditClo_Click(object sender, EventArgs e)
         {
-            if (ValidateChildren(ValidationConstraints.Enabled))
-            {
-                MessageBox.Show(txtName.Text, "Demo App - Message!");
-            }
             if (txtName.Text != "")
             {
                 SqlConnection conn = new SqlConnection(conURL);
@@ -164,6 +156,31 @@ namespace ProjectB
                 e.Cancel = false;
                 errorProviderApp.SetError(txtName, "");
             }
+        }
+
+        private void btnDeleteClo_Click(object sender, EventArgs e)
+        {
+            //if (ID != 0)
+            //{
+            //    SqlConnection conn = new SqlConnection(conURL);
+            //    conn.Open();
+            //    SqlCommand cmd = new SqlCommand("delete Clo where ID=@id", conn); 
+            //    cmd.Parameters.AddWithValue("@id", ID);
+            //    cmd.ExecuteNonQuery();
+            //    MessageBox.Show("Record Deleted Successfully!");
+            //    DisplayClos();
+            //    ClearCloData();
+            //    conn.Close();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Please Select Record to Delete");
+            //}
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

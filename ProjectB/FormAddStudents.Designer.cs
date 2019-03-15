@@ -47,16 +47,22 @@
             this.btnEditStudent = new System.Windows.Forms.Button();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.labelHeader = new System.Windows.Forms.Label();
             this.goBackToManageForm = new System.Windows.Forms.Button();
             this.btnStudentForm = new System.Windows.Forms.Button();
             this.errorProviderApp = new System.Windows.Forms.ErrorProvider(this.components);
             this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderApp)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnBackToMain
@@ -78,7 +84,7 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(488, 253);
+            this.button1.Location = new System.Drawing.Point(374, 234);
             this.button1.Margin = new System.Windows.Forms.Padding(5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(137, 33);
@@ -91,7 +97,7 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(216, 348);
+            this.dataGridView1.Location = new System.Drawing.Point(51, 38);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(5);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(561, 166);
@@ -100,7 +106,7 @@
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(412, 30);
+            this.txtFirstName.Location = new System.Drawing.Point(298, 11);
             this.txtFirstName.Margin = new System.Windows.Forms.Padding(5);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(214, 27);
@@ -109,7 +115,7 @@
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(412, 65);
+            this.txtLastName.Location = new System.Drawing.Point(298, 46);
             this.txtLastName.Margin = new System.Windows.Forms.Padding(5);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(214, 27);
@@ -118,7 +124,7 @@
             // 
             // txtContact
             // 
-            this.txtContact.Location = new System.Drawing.Point(412, 101);
+            this.txtContact.Location = new System.Drawing.Point(298, 82);
             this.txtContact.Margin = new System.Windows.Forms.Padding(5);
             this.txtContact.Name = "txtContact";
             this.txtContact.Size = new System.Drawing.Size(214, 27);
@@ -127,7 +133,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(412, 136);
+            this.txtEmail.Location = new System.Drawing.Point(298, 117);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(5);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(214, 27);
@@ -136,7 +142,7 @@
             // 
             // txtRegistrationNumber
             // 
-            this.txtRegistrationNumber.Location = new System.Drawing.Point(412, 171);
+            this.txtRegistrationNumber.Location = new System.Drawing.Point(298, 152);
             this.txtRegistrationNumber.Margin = new System.Windows.Forms.Padding(5);
             this.txtRegistrationNumber.Name = "txtRegistrationNumber";
             this.txtRegistrationNumber.Size = new System.Drawing.Size(214, 27);
@@ -147,7 +153,7 @@
             // 
             this.lblFirstName.AutoSize = true;
             this.lblFirstName.ForeColor = System.Drawing.Color.White;
-            this.lblFirstName.Location = new System.Drawing.Point(212, 36);
+            this.lblFirstName.Location = new System.Drawing.Point(98, 17);
             this.lblFirstName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblFirstName.Name = "lblFirstName";
             this.lblFirstName.Size = new System.Drawing.Size(87, 21);
@@ -158,7 +164,7 @@
             // 
             this.lblLastName.AutoSize = true;
             this.lblLastName.ForeColor = System.Drawing.Color.White;
-            this.lblLastName.Location = new System.Drawing.Point(212, 71);
+            this.lblLastName.Location = new System.Drawing.Point(98, 52);
             this.lblLastName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(89, 21);
@@ -169,7 +175,7 @@
             // 
             this.lblContact.AutoSize = true;
             this.lblContact.ForeColor = System.Drawing.Color.White;
-            this.lblContact.Location = new System.Drawing.Point(212, 107);
+            this.lblContact.Location = new System.Drawing.Point(98, 88);
             this.lblContact.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblContact.Name = "lblContact";
             this.lblContact.Size = new System.Drawing.Size(78, 21);
@@ -180,7 +186,7 @@
             // 
             this.lblEmail.AutoSize = true;
             this.lblEmail.ForeColor = System.Drawing.Color.White;
-            this.lblEmail.Location = new System.Drawing.Point(212, 142);
+            this.lblEmail.Location = new System.Drawing.Point(98, 123);
             this.lblEmail.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(51, 21);
@@ -191,7 +197,7 @@
             // 
             this.lblRegistrationNumber.AutoSize = true;
             this.lblRegistrationNumber.ForeColor = System.Drawing.Color.White;
-            this.lblRegistrationNumber.Location = new System.Drawing.Point(212, 177);
+            this.lblRegistrationNumber.Location = new System.Drawing.Point(98, 158);
             this.lblRegistrationNumber.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRegistrationNumber.Name = "lblRegistrationNumber";
             this.lblRegistrationNumber.Size = new System.Drawing.Size(166, 21);
@@ -202,7 +208,7 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.ForeColor = System.Drawing.Color.White;
-            this.lblStatus.Location = new System.Drawing.Point(212, 212);
+            this.lblStatus.Location = new System.Drawing.Point(98, 193);
             this.lblStatus.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(59, 21);
@@ -213,7 +219,7 @@
             // 
             this.btnDeleteStudent.FlatAppearance.BorderSize = 0;
             this.btnDeleteStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteStudent.Location = new System.Drawing.Point(640, 316);
+            this.btnDeleteStudent.Location = new System.Drawing.Point(475, 6);
             this.btnDeleteStudent.Name = "btnDeleteStudent";
             this.btnDeleteStudent.Size = new System.Drawing.Size(137, 32);
             this.btnDeleteStudent.TabIndex = 15;
@@ -225,7 +231,7 @@
             // 
             this.btnEditStudent.FlatAppearance.BorderSize = 0;
             this.btnEditStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditStudent.Location = new System.Drawing.Point(479, 318);
+            this.btnEditStudent.Location = new System.Drawing.Point(314, 8);
             this.btnEditStudent.Name = "btnEditStudent";
             this.btnEditStudent.Size = new System.Drawing.Size(146, 31);
             this.btnEditStudent.TabIndex = 16;
@@ -243,6 +249,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.panel6);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.goBackToManageForm);
             this.panel1.Controls.Add(this.btnStudentForm);
@@ -252,9 +259,17 @@
             this.panel1.Size = new System.Drawing.Size(166, 525);
             this.panel1.TabIndex = 17;
             // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.Location = new System.Drawing.Point(0, 89);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(166, 10);
+            this.panel6.TabIndex = 6;
+            // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.panel3.Controls.Add(this.labelHeader);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
@@ -265,12 +280,12 @@
             // labelHeader
             // 
             this.labelHeader.AutoSize = true;
-            this.labelHeader.Font = new System.Drawing.Font("Monotype Corsiva", 48F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelHeader.Location = new System.Drawing.Point(42, -13);
+            this.labelHeader.Font = new System.Drawing.Font("Monotype Corsiva", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelHeader.Location = new System.Drawing.Point(-4, 14);
             this.labelHeader.Name = "labelHeader";
-            this.labelHeader.Size = new System.Drawing.Size(63, 79);
+            this.labelHeader.Size = new System.Drawing.Size(174, 57);
             this.labelHeader.TabIndex = 0;
-            this.labelHeader.Text = "p";
+            this.labelHeader.Text = "projectB";
             // 
             // goBackToManageForm
             // 
@@ -308,39 +323,70 @@
             // cmbStatus
             // 
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(412, 209);
+            this.cmbStatus.Location = new System.Drawing.Point(298, 190);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(213, 29);
             this.cmbStatus.TabIndex = 10;
             this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.cmbStatus_SelectedIndexChanged);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(47)))), ((int)(((byte)(62)))));
+            this.panel2.Controls.Add(this.lblFirstName);
+            this.panel2.Controls.Add(this.cmbStatus);
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.txtFirstName);
+            this.panel2.Controls.Add(this.txtLastName);
+            this.panel2.Controls.Add(this.txtContact);
+            this.panel2.Controls.Add(this.txtEmail);
+            this.panel2.Controls.Add(this.lblStatus);
+            this.panel2.Controls.Add(this.txtRegistrationNumber);
+            this.panel2.Controls.Add(this.lblRegistrationNumber);
+            this.panel2.Controls.Add(this.lblLastName);
+            this.panel2.Controls.Add(this.lblEmail);
+            this.panel2.Controls.Add(this.lblContact);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(166, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(648, 278);
+            this.panel2.TabIndex = 20;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(47)))), ((int)(((byte)(62)))));
+            this.panel4.Controls.Add(this.btnEditStudent);
+            this.panel4.Controls.Add(this.dataGridView1);
+            this.panel4.Controls.Add(this.btnDeleteStudent);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(166, 312);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(648, 213);
+            this.panel4.TabIndex = 21;
+            this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(47)))), ((int)(((byte)(62)))));
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(166, 278);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(648, 34);
+            this.panel5.TabIndex = 22;
             // 
             // FormAddStudents
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(44)))), ((int)(((byte)(51)))));
             this.ClientSize = new System.Drawing.Size(814, 525);
-            this.Controls.Add(this.cmbStatus);
+            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnEditStudent);
-            this.Controls.Add(this.btnDeleteStudent);
-            this.Controls.Add(this.lblStatus);
-            this.Controls.Add(this.lblRegistrationNumber);
-            this.Controls.Add(this.lblEmail);
-            this.Controls.Add(this.lblContact);
-            this.Controls.Add(this.lblLastName);
-            this.Controls.Add(this.lblFirstName);
-            this.Controls.Add(this.txtRegistrationNumber);
-            this.Controls.Add(this.txtEmail);
-            this.Controls.Add(this.txtContact);
-            this.Controls.Add(this.txtLastName);
-            this.Controls.Add(this.txtFirstName);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnBackToMain);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.White;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "FormAddStudents";
             this.Text = "FormAddStudents";
@@ -350,8 +396,10 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderApp)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -381,5 +429,9 @@
         private System.Windows.Forms.Button btnStudentForm;
         private System.Windows.Forms.ErrorProvider errorProviderApp;
         private System.Windows.Forms.ComboBox cmbStatus;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
     }
 }

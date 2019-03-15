@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,6 +15,7 @@ namespace ProjectB
     public partial class RubricForm : Form
     {
         string conURL = "Data Source=RANA-ADEEL;Initial Catalog=ProjectB;User ID=sa;Password=12345;MultipleActiveResultSets=True";
+        int ID = 0;
         public RubricForm()
         {
             InitializeComponent();
@@ -79,41 +81,51 @@ namespace ProjectB
 
         private void btnAddClo_Click(object sender, EventArgs e)
         {
-            if (ValidateChildren(ValidationConstraints.Enabled))
-            {
-                MessageBox.Show(txtRubricId.Text, "Demo App - Message!");
-                MessageBox.Show(richTextBox1.Text, "Demo App - Message!");
-            }
+            
             SqlConnection conn = new SqlConnection(conURL);
             conn.Open();
 
-            if (txtRubricId.Text !="" &&
-                cmbIds.Text != "" &&
+            if (cmbIds.Text != "" &&
                 richTextBox1.Text != ""
                 )
             {
-                int check = CheckFunction(Convert.ToInt32(txtRubricId.Text));
-                
-                if(check == 0)
+                if (!Regex.IsMatch(txtRubricId.Text, @"[0-9]") || txtRubricId.Text == "")
                 {
-                    MessageBox.Show("Rubric with this ID already exist add another ID");
+                    MessageBox.Show("Rubric ID Should be a number");
                 }
                 else
                 {
-                    //Store data
-                    string rubricId = txtRubricId.Text;
-                    int cloId = Convert.ToInt32(cmbIds.Text);
-                    string details = richTextBox1.Text;
+                    //Check If Rubric Id already exist
 
-                    //insert data
+                    SqlConnection conn1 = new SqlConnection(conURL);
+                    conn1.Open();
+                    string s = "SELECT COUNT(*) FROM Rubric WHERE Id = @id";
 
-                    string cmd = "INSERT INTO Rubric VALUES('" + rubricId + "', '" + details + "', '" + cloId + "')";
-                    SqlCommand command = new SqlCommand(cmd, conn);
-                    command.ExecuteNonQuery();
-                    MessageBox.Show("Record Inserted Successfully");
-                    DisplayData();
+                    SqlCommand scommand = new SqlCommand(s, conn);
+                    scommand.Parameters.AddWithValue("@id", txtRubricId.Text);
+                    int records = (int)scommand.ExecuteScalar();
+
+                    if (records == 0)
+                    {
+                        //Store data
+                        string rubricId = txtRubricId.Text;
+                        int cloId = Convert.ToInt32(cmbIds.Text);
+                        string details = richTextBox1.Text;
+
+                        //insert data
+
+                        string cmd = "INSERT INTO Rubric VALUES('" + rubricId + "', '" + details + "', '" + cloId + "')";
+                        SqlCommand command = new SqlCommand(cmd, conn);
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Record Inserted Successfully");
+                        DisplayData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Rubric with this ID already exist add another ID");
+                    }
                 }
-                
+                    
             }
             else
             {
@@ -122,15 +134,8 @@ namespace ProjectB
             //clear data
             ClearData();
         }
-        public int CheckFunction(int id)
-        {
-            SqlConnection conn = new SqlConnection(conURL);
-            conn.Open();
-            string cmd = "SELECT * FROM Rubric WHERE Id = id";
-            SqlCommand command = new SqlCommand(cmd, conn);
-            int rows = command.ExecuteNonQuery();
-            return rows;
-        }
+
+        
         public void ClearData()
         {
             txtRubricId.Text = "";
@@ -149,6 +154,20 @@ namespace ProjectB
             dataGridView1.ForeColor = Color.Black;
             conn.Close();
 
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
+
+                ID = Convert.ToInt32(row.Cells["Id"].Value.ToString());
+                txtRubricId.Text = row.Cells["Id"].Value.ToString();
+                cmbIds.Text = row.Cells["CloId"].Value.ToString();
+                richTextBox1.Text = row.Cells["Details"].Value.ToString();
+                
+            }
         }
 
         private void txtRubricId_Validating(object sender, CancelEventArgs e)
@@ -178,6 +197,73 @@ namespace ProjectB
             {
                 e.Cancel = false;
                 errorProviderApp.SetError(richTextBox1, "");
+            }
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (txtRubricId.Text != "" &&
+               cmbIds.Text != "" &&
+               richTextBox1.Text != ""
+               )
+            {
+                if (!Regex.IsMatch(txtRubricId.Text, @"[0-9]"))
+                {
+                    MessageBox.Show("Invalid Rubric ID");
+                }
+                else if (!Regex.IsMatch(cmbIds.Text, @"[0-9]"))
+                {
+                    MessageBox.Show("Invalid CLO ID");
+                }
+                else if (!Regex.IsMatch(richTextBox1.Text, @"[A-Za-z0-9-. ]"))
+                {
+                    MessageBox.Show("Invalid Details");
+                }
+               
+                else
+                {
+                    SqlConnection conn = new SqlConnection(conURL);
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("update Rubric set Id=@id, Details=@details, CloId=@cloId where ID=@id", conn);
+                    cmd.Parameters.AddWithValue("@id", ID);
+                    cmd.Parameters.AddWithValue("@details", richTextBox1.Text);
+                    cmd.Parameters.AddWithValue("@cloId", cmbIds.Text);
+                    
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Record Updated Successfully");
+                    conn.Close();
+                    DisplayData();
+                    ClearData();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Click on the record of datagridview to which you wanna update");
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (ID != 0)
+            {
+                SqlConnection conn = new SqlConnection(conURL);
+                SqlCommand cmd = new SqlCommand("delete Rubric where ID=@id", conn);
+                conn.Open();
+                cmd.Parameters.AddWithValue("@id", ID);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                MessageBox.Show("Record Deleted Successfully!");
+                DisplayData();
+                ClearData();
+            }
+            else
+            {
+                MessageBox.Show("Please Select Record to Delete");
             }
         }
     }

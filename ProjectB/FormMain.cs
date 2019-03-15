@@ -46,6 +46,10 @@ namespace ProjectB
 
         private void btnConnection_Click(object sender, EventArgs e)
         {
+            //panel start
+            panelLeft.Height = btnConnection.Height;
+            panelLeft.Top = btnConnection.Top;
+
             SqlConnection conn = new SqlConnection(conURL);
             conn.Open();
             MessageBox.Show("Connection is Open");

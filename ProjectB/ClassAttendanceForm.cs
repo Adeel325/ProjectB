@@ -39,14 +39,6 @@ namespace ProjectB
         {
             SqlConnection conn = new SqlConnection(conURL);
             conn.Open();
-
-            //if data is not valid
-            //if (ValidateChildren(ValidationConstraints.Enabled))
-            //{
-            //    MessageBox.Show(richTextBox1.Text, "Demo App - Message!");
-            //    MessageBox.Show(txtMeasurementLevel.Text, "Demo App - Message!");
-            //}
-            //if data is valid
             
             if (Convert.ToDateTime(dateTimePicker1.Text).Date >= DateTime.Now.Date)
             {
@@ -67,6 +59,7 @@ namespace ProjectB
                 MessageBox.Show("Date is Incorrect");
             }
         }
+        //function to display data in datagridview
         public void DisplayData()
         {
             SqlConnection conn = new SqlConnection(conURL);
@@ -81,8 +74,10 @@ namespace ProjectB
 
         private void btnGoBackToManageForm_Click(object sender, EventArgs e)
         {
+            //Set the pannel height
             panelLeft.Height = btnGoBackToManageForm.Height;
             panelLeft.Top = btnGoBackToManageForm.Top;
+            //go back to form manage student 
             MessageBox.Show("You are going to leave this Form");
             this.Hide();
 
@@ -92,15 +87,17 @@ namespace ProjectB
 
         private void btnAddAttendances_Click(object sender, EventArgs e)
         {
+            //Set the pannel height
             panelLeft.Height = btnAddAttendances.Height;
             panelLeft.Top = btnAddAttendances.Top;
             MessageBox.Show("You are already on Class Attendance Form");
             
         }
 
-        private void panel4_Paint(object sender, PaintEventArgs e)
+        private void ClassAttendanceForm_Load(object sender, EventArgs e)
         {
-
+            //Display dat on load
+            DisplayData();
         }
     }
 }

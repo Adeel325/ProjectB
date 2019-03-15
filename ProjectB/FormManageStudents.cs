@@ -32,14 +32,17 @@ namespace ProjectB
             return instance;
         }
 
+        
         private void FormManageStudents_Load(object sender, EventArgs e)
         {
+            //Set the pannel height
             panelLeft.Height = btnAddStudents.Height;
             panelLeft.Top = btnAddStudents.Top;
         }
 
         private void btnGoBackToMain_Click(object sender, EventArgs e)
         {
+            //Set the pannel height
             panelLeft.Height = btnGoBackToMain.Height;
             panelLeft.Top = btnGoBackToMain.Top;
 
@@ -51,6 +54,7 @@ namespace ProjectB
 
         private void btnAddStudent_Click(object sender, EventArgs e)
         {
+            //Set the pannel height
             panelLeft.Height = btnAddStudent.Height;
             panelLeft.Top = btnAddStudent.Top;
 
@@ -62,6 +66,7 @@ namespace ProjectB
 
         private void btnAddAttendance_Click(object sender, EventArgs e)
         {
+            //Set the pannel height
             panelLeft.Height = btnAddAttendance.Height;
             panelLeft.Top = btnAddAttendance.Top;
 
@@ -73,6 +78,7 @@ namespace ProjectB
 
         private void btnAddClassAttendance_Click(object sender, EventArgs e)
         {
+            //Set the pannel height
             panelLeft.Height = btnAddClassAttendance.Height;
             panelLeft.Top = btnAddClassAttendance.Top;
 
